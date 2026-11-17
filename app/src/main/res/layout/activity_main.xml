@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fillViewport="true"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crypto Crash Alert"
+            android:textColor="@color/text"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/Muted"
+            android:text="الهاتف الرئيسي — يراقب الأسعار ويشغّل بوت Telegram ويرسل التنبيهات لكل المشتركين" />
+
+        <TextView
+            android:id="@+id/txtServiceState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@color/card"
+            android:padding="12dp"
+            android:textColor="@color/text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Requirements / honesty card -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Card"
+            app:strokeColor="@color/warn">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView style="@style/CardTitle" android:text="⚠️ متطلبات التشغيل" />
+
+                <TextView
+                    style="@style/Body"
+                    android:text="• المشتركون لا يحتاجون إلى تثبيت التطبيق: يبحثون عن البوت في Telegram ويضغطون /start.\n• هذا الهاتف هو المصدر الوحيد للتنبيهات، لذلك يجب أن يبقى قيد التشغيل.\n• يجب أن يبقى التطبيق وخدمة المراقبة فعّالين.\n• يجب أن يكون الإنترنت متاحاً باستمرار.\n• إذا توقف هذا الهاتف أو أُغلق أو انقطع الإنترنت، تتوقف مراقبة الأسعار وإرسال التنبيهات فوراً، ولا يرد البوت على أحد.\n• يُنصح بإبقاء الهاتف موصولاً بالشاحن واستثناء التطبيق من تحسين البطارية." />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Telegram -->
+        <com.google.android.material.card.MaterialCardView style="@style/Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView style="@style/CardTitle" android:text="🤖 بوت Telegram" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bot Token (من BotFather)"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtToken"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:layoutDirection="ltr"
+                        android:textDirection="ltr" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txtTokenState"
+                    style="@style/Muted"
+                    android:layout_marginTop="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaveToken"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="حفظ" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTestBot"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:text="اختبار الاتصال" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearToken"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="حذف" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtBotName"
+                    style="@style/Body"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/txtSubscribers"
+                    style="@style/Body"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/txtBotState"
+                    style="@style/Muted"
+                    android:layout_marginTop="4dp" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swBot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="تشغيل البوت"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTestBroadcast"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="إرسال رسالة تجريبية لكل المشتركين" />
+
+                <TextView
+                    android:id="@+id/txtBroadcast"
+                    style="@style/Muted"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Monitoring -->
+        <com.google.android.material.card.MaterialCardView style="@style/Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView style="@style/CardTitle" android:text="📉 مراقبة العملات" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swMonitor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تشغيل مراقبة العملات"
+                    android:textColor="@color/text"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtSources"
+                    style="@style/Body"
+                    android:layout_marginTop="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="نسبة الهبوط %">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtDrop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:hint="خلال (ثانية)">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtWindow"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="فترة التهدئة (دقيقة)">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCooldown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:hint="تحديث كل (ثانية)">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtPoll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="العملات (مفصولة بفاصلة) أو ALL لكل أزواج USDT">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtSymbols"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters|textMultiLine"
+                        android:layoutDirection="ltr"
+                        android:textDirection="ltr" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/chkBinance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Binance"
+                        android:textColor="@color/text" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/chkBybit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bybit"
+                        android:textColor="@color/text" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/chkOkx"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="OKX"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSaveSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="حفظ إعدادات المراقبة" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Background reliability -->
+        <com.google.android.material.card.MaterialCardView style="@style/Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView style="@style/CardTitle" android:text="🔋 العمل في الخلفية" />
+
+                <TextView
+                    android:id="@+id/txtReliability"
+                    style="@style/Body" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBattery"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="استثناء التطبيق من تحسين البطارية" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNotifPerm"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="السماح بالإشعارات" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Recent alerts -->
+        <com.google.android.material.card.MaterialCardView style="@style/Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView style="@style/CardTitle" android:text="🕒 آخر التنبيهات" />
+
+                <TextView
+                    android:id="@+id/txtAlerts"
+                    style="@style/Body"
+                    android:textIsSelectable="true" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txtFooter"
+            style="@style/Muted"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="تطوير أبو عبدالله الشامي • تواصل مع المطور: +963968744241" />
+    </LinearLayout>
+</ScrollView>
